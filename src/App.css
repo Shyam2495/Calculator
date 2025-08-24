@@ -1,0 +1,76 @@
+/* Background */
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* full screen height */
+  background: #f3f3f3;
+}
+
+/* Calculator Box */
+.calculator {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 50%; /* 50% of screen */
+  max-width: 400px; /* optional: prevents it from being too big on large screens */
+}
+
+/* Display */
+.display {
+  height: 60px;
+  background: white;
+  font-size: 32px;
+  font-weight: bold;
+  text-align: right;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: none;
+  overflow: hidden;
+}
+
+/* Buttons Grid */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+/* Buttons */
+button {
+  background: #f1f5f9;
+  border: none;
+  padding: 18px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #e2e8f0;
+}
+
+/* Operators */
+.operator {
+  background: #f59e0b;
+  color: white;
+}
+
+.operator:hover {
+  background: #d97706;
+}
+
+/* Equal Button */
+.equal {
+  background: #22c55e;
+  color: white;
+  grid-column: span 2;
+}
+
+.equal:hover {
+  background: #16a34a;
+}
