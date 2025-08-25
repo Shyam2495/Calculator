@@ -74,3 +74,10 @@ button:hover {
 .equal:hover {
   background: #16a34a;
 }
+
+@media (max-width: 767px) {
+  .calculator {
+    width: 100%;
+    max-width: 80%;
+  }
+}
