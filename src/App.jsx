@@ -3,21 +3,32 @@ import "./App.css";
 
 function App() {
   const [input, setInput] = useState("0");
+  const [isResult, setIsResult] = useState(false); // new state
 
   const handleClick = (value) => {
-    if (input === "0" && value !== "." && !isNaN(value)) {
+    if (isResult && !isNaN(value)) {
+      // if last shown was result and new input is a number → start fresh
+      setInput(value);
+      setIsResult(false);
+    } else if (input === "0" && value !== "." && !isNaN(value)) {
       setInput(value);
     } else {
       setInput(input + value);
+      setIsResult(false);
     }
   };
 
   const handleClear = () => {
     setInput("0");
+    setIsResult(false);
   };
 
   const handleBackspace = () => {
-    if (input.length > 1) {
+    if (isResult) {
+      // if result displayed and user presses backspace → reset
+      setInput("0");
+      setIsResult(false);
+    } else if (input.length > 1) {
       setInput(input.slice(0, -1));
     } else {
       setInput("0");
@@ -26,9 +37,12 @@ function App() {
 
   const handleCalculate = () => {
     try {
-      setInput(eval(input).toString());
+      const result = eval(input).toString(); // ⚠️ eval for demo only
+      setInput(result);
+      setIsResult(true); // mark that we showed result
     } catch {
       setInput("Error");
+      setIsResult(true);
     }
   };
 
@@ -38,7 +52,7 @@ function App() {
         <div className="display">{input}</div>
         <div className="buttons">
           <button onClick={handleClear}>C</button>
-          <button onClick={handleBackspace}>⌫</button> {/* 🆕 Backspace */}
+          <button onClick={handleBackspace}>⌫</button>
           <button onClick={() => handleClick("%")}>%</button>
           <button className="operator" onClick={() => handleClick("/")}>
             /
